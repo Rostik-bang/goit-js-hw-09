@@ -1,0 +1,2 @@
+import"./assets/modulepreload-polyfill-B5Qt9EMX.js";/* empty css                      */const e={email:"",message:""},a=document.querySelector(".feedback-form");a.addEventListener("input",function(t){const o=t.target.name,r=t.target.value.trim();e[o]=r,localStorage.setItem("feedback-form-state",JSON.stringify(e))});a.addEventListener("submit",function(t){if(t.preventDefault(),e.email===""||e.message===""){alert("Fill please all fields");return}console.log(e),e.email="",e.message="",a.reset(),localStorage.removeItem("feedback-form-state")});
+//# sourceMappingURL=2-form.js.map
