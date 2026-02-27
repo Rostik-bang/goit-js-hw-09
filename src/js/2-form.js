@@ -5,23 +5,26 @@ const formData = {
 
 const formEl = document.querySelector('.feedback-form');
 
+function loadFormData() {
+  const savedData = localStorage.getItem('feedback-form-state');
+  if (savedData !== null) {
+    const parsedData = JSON.parse(savedData);
+    formEl.elements.email.value = parsedData.email || '';
+    formEl.elements.message.value = parsedData.message || '';
+    formData.email = parsedData.email || '';
+    formData.message = parsedData.message || '';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', loadFormData);
+
 formEl.addEventListener('input', function (event) {
-  //   const formEmail = event.target.value.trim();
   const name = event.target.name;
   const value = event.target.value.trim();
   formData[name] = value;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 });
-function loadFormData() {
-  const savedTheme = localStorage.getItem('feedback-form-state');
-  if (savedTheme !== null) {
-    const parsedTheme = JSON.parse(savedTheme);
-    formEl.elements.email.value = parsedTheme.email;
-    formEl.elements.message.value = parsedTheme.message;
-    formData.email = parsedTheme.email;
-    formData.message = parsedTheme.message;
-  }
-}
+
 formEl.addEventListener('submit', function (event) {
   event.preventDefault();
   if (formData.email === '' || formData.message === '') {
